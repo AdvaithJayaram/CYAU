@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "posts": {
+      ".indexOn": ["metadata/createdAt", "metadata/authorId"]
+    },
+    "deals": {
+      ".indexOn": ["metadata/createdAt", "metadata/status", "metadata/stage"]
+    },
+    "liveRooms": {
+      ".indexOn": ["metadata/status", "metadata/createdAt"]
+    },
+    "notifications": {
+      ".indexOn": ["metadata/createdAt", "metadata/read"]
+    }
+  }
+}

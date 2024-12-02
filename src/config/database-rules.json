@@ -1,0 +1,31 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth != null && ($uid === auth.uid || root.child('users').child(auth.uid).child('role').val() === 'admin')",
+        ".write": "auth != null && $uid === auth.uid",
+        ".validate": "newData.hasChildren(['email', 'displayName'])"
+      }
+    },
+    "deals": {
+      ".read": "auth != null",
+      "$dealId": {
+        ".write": "auth != null && (!data.exists() || data.child('createdBy').val() === auth.uid || root.child('users').child(auth.uid).child('role').val() === 'admin')",
+        ".validate": "newData.hasChildren(['title', 'type', 'status'])"
+      }
+    },
+    "activities": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      "$activityId": {
+        ".validate": "newData.hasChildren(['type', 'userId', 'timestamp'])"
+      }
+    },
+    "notifications": {
+      "$uid": {
+        ".read": "auth != null && $uid === auth.uid",
+        ".write": "auth != null && ($uid === auth.uid || root.child('users').child(auth.uid).child('role').val() === 'admin')"
+      }
+    }
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "collections": {
+    "users": {
+      "fields": {
+        "uid": "string",
+        "email": "string",
+        "displayName": "string",
+        "photoURL": "string",
+        "role": "string",
+        "company": "string",
+        "title": "string",
+        "location": "string",
+        "bio": "string",
+        "expertise": "array<string>",
+        "createdAt": "timestamp",
+        "lastActive": "timestamp"
+      }
+    },
+    "deals": {
+      "fields": {
+        "id": "string",
+        "name": "string",
+        "description": "string",
+        "type": "string",
+        "value": "number",
+        "currency": "string",
+        "stage": "string",
+        "status": "string",
+        "createdBy": "reference:users",
+        "createdAt": "timestamp",
+        "updatedAt": "timestamp",
+        "participants": "array<reference:users>",
+        "tags": "array<string>",
+        "metadata": {
+          "industry": "string",
+          "region": "string",
+          "dealType": "string",
+          "expectedClosingDate": "timestamp"
+        }
+      },
+      "subcollections": {
+        "activities": {
+          "fields": {
+            "type": "string",
+            "description": "string",
+            "performedBy": "reference:users",
+            "timestamp": "timestamp",
+            "metadata": "map"
+          }
+        },
+        "documents": {
+          "fields": {
+            "name": "string",
+            "type": "string",
+            "url": "string",
+            "uploadedBy": "reference:users",
+            "uploadedAt": "timestamp",
+            "size": "number",
+            "status": "string",
+            "permissions": "array<map>"
+          }
+        },
+        "messages": {
+          "fields": {
+            "content": "string",
+            "sender": "reference:users",
+            "timestamp": "timestamp",
+            "type": "string",
+            "attachments": "array<map>",
+            "readBy": "array<reference:users>"
+          }
+        }
+      }
+    },
+    "connections": {
+      "fields": {
+        "userId": "reference:users",
+        "connectedWith": "reference:users",
+        "status": "string",
+        "connectedAt": "timestamp",
+        "lastInteraction": "timestamp",
+        "tags": "array<string>",
+        "notes": "string"
+      }
+    },
+    "organizations": {
+      "fields": {
+        "name": "string",
+        "type": "string",
+        "industry": "string",
+        "size": "string",
+        "location": "string",
+        "website": "string",
+        "logo": "string",
+        "description": "string",
+        "members": "array<reference:users>",
+        "createdAt": "timestamp",
+        "updatedAt": "timestamp"
+      }
+    },
+    "chatSessions": {
+      "fields": {
+        "dealId": "reference:deals",
+        "startedAt": "timestamp",
+        "lastMessage": "timestamp",
+        "participants": "array<reference:users>"
+      },
+      "subcollections": {
+        "messages": {
+          "fields": {
+            "content": "string",
+            "role": "string",
+            "timestamp": "timestamp",
+            "metadata": "map"
+          }
+        }
+      }
+    },
+    "notifications": {
+      "fields": {
+        "userId": "reference:users",
+        "type": "string",
+        "title": "string",
+        "message": "string",
+        "relatedTo": "reference",
+        "read": "boolean",
+        "createdAt": "timestamp"
+      }
+    },
+    "analytics": {
+      "fields": {
+        "dealId": "reference:deals",
+        "type": "string",
+        "data": "map",
+        "timestamp": "timestamp"
+      }
+    }
+  },
+  "indexes": [
+    {
+      "collection": "deals",
+      "fields": ["status", "createdAt"]
+    },
+    {
+      "collection": "deals",
+      "fields": ["stage", "updatedAt"]
+    },
+    {
+      "collection": "connections",
+      "fields": ["userId", "status"]
+    },
+    {
+      "collection": "notifications",
+      "fields": ["userId", "read", "createdAt"]
+    }
+  ],
+  "rules": {
+    "users": {
+      "read": "auth != null",
+      "write": "auth != null && auth.uid == userId"
+    },
+    "deals": {
+      "read": "auth != null && (resource.data.participants.hasAny([auth.uid]) || resource.data.createdBy == auth.uid)",
+      "write": "auth != null && (resource.data.participants.hasAny([auth.uid]) || resource.data.createdBy == auth.uid)"
+    },
+    "connections": {
+      "read": "auth != null && (resource.data.userId == auth.uid || resource.data.connectedWith == auth.uid)",
+      "write": "auth != null && auth.uid == userId"
+    }
+  }
+}

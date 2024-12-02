@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply text-base;
+  }
+
+  @screen 3xl {
+    html {
+      font-size: 18px;
+    }
+  }
+
+  body {
+    @apply bg-gray-50;
+  }
+}
+
+@layer components {
+  .gradient-btn {
+    @apply bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg 
+           hover:from-blue-700 hover:to-blue-800 transition-colors duration-200
+           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed
+           text-sm sm:text-base;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4 sm:p-6;
+  }
+
+  .input-field {
+    @apply w-full px-3 sm:px-4 py-2 border rounded-lg 
+           focus:outline-none focus:ring-2 focus:ring-blue-500
+           disabled:bg-gray-100 disabled:cursor-not-allowed;
+  }
+
+  .mobile-menu {
+    @apply fixed inset-0 z-50 bg-white transform transition-transform duration-300 ease-in-out
+           lg:relative lg:inset-auto lg:transform-none;
+  }
+}
+
+/* Responsive Grid Layouts */
+.grid-responsive {
+  @apply grid gap-4 sm:gap-6;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+.grid-cards {
+  @apply grid gap-4 sm:gap-6;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400 transition-colors;
+}
+
+/* Animations */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+@keyframes gradient-x {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animate-gradient-x {
+  animation: gradient-x 15s ease infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Responsive Typography */
+.text-responsive {
+  @apply text-sm sm:text-base lg:text-lg;
+}
+
+.heading-responsive {
+  @apply text-xl sm:text-2xl lg:text-3xl font-bold;
+}
+
+/* Responsive Spacing */
+.section-padding {
+  @apply py-6 sm:py-8 lg:py-12;
+}
+
+.content-padding {
+  @apply p-4 sm:p-6 lg:p-8;
+}
+
+/* Responsive Layout Utilities */
+.flex-responsive {
+  @apply flex flex-col sm:flex-row;
+}
+
+.grid-responsive-cols {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}

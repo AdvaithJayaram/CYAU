@@ -1,0 +1,255 @@
+{
+  "users": {
+    "uid_hash": {
+      "profile": {
+        "fullName": "string",
+        "email": "string",
+        "imageUrl": "string",
+        "jobTitle": "string",
+        "organizationName": "string",
+        "phoneNumber": "string",
+        "location": {
+          "city": "string",
+          "state": "string",
+          "country": "string"
+        },
+        "createdAt": "timestamp",
+        "updatedAt": "timestamp"
+      },
+      "professional": {
+        "industry": ["string"],
+        "expertise": ["string"],
+        "yearsExperience": "number",
+        "certifications": ["string"],
+        "linkedinProfile": "string",
+        "summary": "string"
+      },
+      "dealPreferences": {
+        "roles": ["string"],
+        "types": ["string"],
+        "size": {
+          "min": "number",
+          "max": "number",
+          "currency": "string"
+        },
+        "geographicalFocus": ["string"],
+        "sectorFocus": ["string"],
+        "frequency": "string"
+      },
+      "compliance": {
+        "kycStatus": "string",
+        "amlCertification": {
+          "verified": "boolean",
+          "documentUrl": "string",
+          "expiryDate": "timestamp"
+        },
+        "authorizedRep": "boolean"
+      }
+    }
+  },
+  "deals": {
+    "deal_id": {
+      "metadata": {
+        "name": "string",
+        "type": "string",
+        "description": "string",
+        "stage": "string",
+        "status": "string",
+        "value": {
+          "amount": "number",
+          "currency": "string"
+        },
+        "createdBy": "string",
+        "createdAt": "timestamp",
+        "updatedAt": "timestamp"
+      },
+      "syndicate": {
+        "type": "string",
+        "minInvestment": "number",
+        "targetRaise": "number",
+        "carriedInterest": "number",
+        "managementFee": "number",
+        "setupFee": "number",
+        "adminFee": "number",
+        "incentives": {
+          "incentive_id": {
+            "recipient": "string",
+            "percentage": "number",
+            "description": "string"
+          }
+        }
+      },
+      "participants": {
+        "user_id": {
+          "role": "string",
+          "permissions": ["string"],
+          "joinedAt": "timestamp"
+        }
+      },
+      "stages": {
+        "kyc": {
+          "status": "string",
+          "completedAt": "timestamp",
+          "documents": {
+            "doc_id": {
+              "name": "string",
+              "url": "string",
+              "type": "string",
+              "uploadedBy": "string",
+              "uploadedAt": "timestamp",
+              "status": "string"
+            }
+          }
+        },
+        "dueDiligence": {
+          "status": "string",
+          "completedAt": "timestamp",
+          "documents": {
+            "doc_id": {
+              "name": "string",
+              "url": "string",
+              "type": "string",
+              "uploadedBy": "string",
+              "uploadedAt": "timestamp",
+              "status": "string"
+            }
+          }
+        },
+        "dealStructuring": {
+          "status": "string",
+          "completedAt": "timestamp",
+          "documents": {
+            "doc_id": {
+              "name": "string",
+              "url": "string",
+              "type": "string",
+              "uploadedBy": "string",
+              "uploadedAt": "timestamp",
+              "status": "string"
+            }
+          }
+        },
+        "negotiation": {
+          "status": "string",
+          "completedAt": "timestamp",
+          "documents": {
+            "doc_id": {
+              "name": "string",
+              "url": "string",
+              "type": "string",
+              "uploadedBy": "string",
+              "uploadedAt": "timestamp",
+              "status": "string"
+            }
+          }
+        },
+        "signing": {
+          "status": "string",
+          "completedAt": "timestamp",
+          "documents": {
+            "doc_id": {
+              "name": "string",
+              "url": "string",
+              "type": "string",
+              "uploadedBy": "string",
+              "uploadedAt": "timestamp",
+              "status": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "marketplace": {
+    "listing_id": {
+      "title": "string",
+      "type": "string",
+      "price": "number",
+      "description": "string",
+      "location": "string",
+      "industry": "string",
+      "verified": "boolean",
+      "metrics": {
+        "mrr": "number",
+        "revenue": "number",
+        "growth": "number",
+        "customers": "number",
+        "arpu": "number",
+        "margin": "number"
+      },
+      "seller": {
+        "userId": "string",
+        "contactInfo": {
+          "email": "string",
+          "phone": "string"
+        }
+      },
+      "status": "string",
+      "createdAt": "timestamp",
+      "updatedAt": "timestamp"
+    }
+  },
+  "posts": {
+    "post_id": {
+      "content": "string",
+      "authorId": "string",
+      "authorName": "string",
+      "authorImage": "string",
+      "likes": "number",
+      "comments": {
+        "comment_id": {
+          "content": "string",
+          "authorId": "string",
+          "authorName": "string",
+          "authorImage": "string",
+          "createdAt": "timestamp",
+          "likes": "number"
+        }
+      },
+      "shares": "number",
+      "createdAt": "timestamp",
+      "updatedAt": "timestamp"
+    }
+  },
+  "liveRooms": {
+    "room_id": {
+      "type": "string",
+      "status": "string",
+      "participants": {
+        "user_id": {
+          "joinedAt": "timestamp",
+          "leftAt": "timestamp"
+        }
+      },
+      "preferences": {
+        "offering": ["string"],
+        "seeking": ["string"],
+        "industries": ["string"],
+        "dealSize": {
+          "min": "number",
+          "max": "number",
+          "currency": "string"
+        }
+      },
+      "messages": {
+        "message_id": {
+          "content": "string",
+          "senderId": "string",
+          "createdAt": "timestamp"
+        }
+      },
+      "createdAt": "timestamp",
+      "endedAt": "timestamp"
+    }
+  },
+  "connections": {
+    "connection_id": {
+      "userId": "string",
+      "connectedWith": "string",
+      "status": "string",
+      "notes": "string",
+      "createdAt": "timestamp",
+      "updatedAt": "timestamp"
+    }
+  }
+}
